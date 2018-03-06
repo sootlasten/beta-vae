@@ -1,1 +1,2 @@
-# beta-vae
+The PyTorch version doesn't seem to work, as it gives entangled reconsturctions. Moreover, the KL values and loss it gives compared to Tensorflow's versions are fundamentally different. Need's investigation.
+![](traversal_18_5000.png)
