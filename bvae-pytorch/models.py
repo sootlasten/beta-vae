@@ -35,7 +35,7 @@ class DenseVAE(nn.Module):
     def decode(self, z):
         x = self.tanh(self.fc3(z))
         x = self.tanh(self.fc4(x))
-        # x = self.tanh(self.fc5(x))
+        x = self.tanh(self.fc5(x))
         return self.sigmoid(self.fc6(x))
 
     def forward(self, x):
