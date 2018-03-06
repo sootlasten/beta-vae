@@ -30,10 +30,10 @@ def _traverse_latents(model, datapoint, nb_latents, epoch_nb, batch_idx, dirpath
     else:
         mu, _ = model.encode(datapoint.view(-1))
 
-    recons = torch.zeros((5, nb_latents, 64, 64))
+    recons = torch.zeros((7, nb_latents, 64, 64))
     for zi in range(nb_latents):
        muc = mu.squeeze().clone()
-       for i, val in enumerate(np.linspace(-3, 3, 5)):
+       for i, val in enumerate(np.linspace(-3, 3, 7)):
            muc[zi] = val
            recon = model.decode(muc).cpu()
            recons[i, zi] = recon.view(64, 64)
@@ -94,7 +94,7 @@ def train(args):
 def parse():
     parser = argparse.ArgumentParser(description='train beta-VAE on the sprites dataset')
     parser.add_argument('--eta', type=float, default=1e-2, metavar='L',
-                        help='learning rate for Adam (default: 1e-2)')
+                        help='learning rate for Adagrad (default: 1e-2)')
     parser.add_argument('--beta', type=int, default=4, metavar='B',
                         help='the beta coefficient (default: 4)')
     parser.add_argument('--nb-latents', type=int, default=10, metavar='N',
